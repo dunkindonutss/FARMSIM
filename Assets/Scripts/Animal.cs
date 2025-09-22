@@ -2,12 +2,30 @@ using UnityEngine;
 
 public abstract class Animal : MonoBehaviour
 {
+    //Fields
     private string name;
     private int hunger;
     private int happiness;
-    
-    public string Name { get { return name; } set { name = value; } }
-    public int Hunger { get { return hunger; } set 
+    //Properties
+    public string Name
+    {
+        get { return name; }
+        private set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                name = "Unknown";
+            }
+            else
+            {
+                name = value;
+            }
+        }
+    }
+    public int Hunger
+    {
+        get { return hunger; }
+        private set
         {
             if (value >= 0 && value < 50)
             {
@@ -17,9 +35,12 @@ public abstract class Animal : MonoBehaviour
             {
                 hunger = 0;
             }
-        } 
+        }
     }
-    public int Happiness { get { return happiness; } set 
+    public int Happiness
+    {
+        get { return happiness; }
+        private set
         {
             if (value >= 0 && value < 50)
             {
@@ -29,14 +50,14 @@ public abstract class Animal : MonoBehaviour
             {
                 happiness = 0;
             }
-        } 
+        }
     }
 
     public void Init(string name, int hunger, int happiness)
     {
-        this.name = name;
-        this.hunger = hunger;
-        this.happiness = happiness;
+        this.Name = name;
+        this.Hunger = hunger;
+        this.Happiness = happiness;
     }
     
     public void AdjustHunger(int setHunger)
