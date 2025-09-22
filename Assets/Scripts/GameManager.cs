@@ -1,28 +1,58 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Cow missCow;
+    [SerializeField] private Chicken kfc;
+    [SerializeField] private Horse lubu;
+    private string gameName = "FARM SIM";
+    [SerializeField] private List<Animal> allAnimalInFarm = new List<Animal>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Chicken chicken_Tommy = new Chicken("Tommy", 10, 10, 5);
-        Cow cow_Jeep = new Cow("Jeep", 15, 8, 2);
+        //init
+        missCow = FindFirstObjectByType<Cow>();
+        missCow.Init("MissCow",20,15);
+        kfc = FindFirstObjectByType<Chicken>();
+        kfc.Init("Kfc",25,18);
+        lubu = FindFirstObjectByType<Horse>();
+        lubu.Init("Lubu",30,12);
         
-        //Tommy
-        chicken_Tommy.AdjustHunger(5);
-        chicken_Tommy.AdjustHappiness(10);
-        chicken_Tommy.MakeSound();
-        chicken_Tommy.Feed("Grain");
-        chicken_Tommy.GetStatus();
-        chicken_Tommy.Sleep();
+        AddAnimalInFarmToList();
+        Debug.Log($"WELCOME TO {gameName}, Now You has : {GetNumberOfAnimalsInFarm()} Animals.");
+        ShowAllAnimalStatInFarm();
         
-        //Jeep
-        cow_Jeep.AdjustHunger(30);
-        cow_Jeep.AdjustHappiness(13);
-        cow_Jeep.MakeSound();
-        cow_Jeep.Feed("Hay");
-        cow_Jeep.GetStatus();
-        cow_Jeep.Sleep();
+        foreach (var animal in allAnimalInFarm)
+        {
+            animal.MakeSound();
+            animal.Feed(15);
+        }
+        
+    }
+
+    public void AddAnimalInFarmToList()
+    {
+        Animal[] animalsInScene = FindObjectsOfType<Animal>();
+
+        for (int i = 0; i < animalsInScene.Length; i++)
+        {
+            allAnimalInFarm.Add(animalsInScene[i]);
+        }
+    }
+
+    public void ShowAllAnimalStatInFarm()
+    {
+        foreach (var animal in allAnimalInFarm)
+        {
+            animal.GetStatus();
+        }
+    }
+
+    public int GetNumberOfAnimalsInFarm()
+    {
+        return allAnimalInFarm.Count;
     }
     
 }
