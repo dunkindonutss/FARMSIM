@@ -2,24 +2,19 @@ using UnityEngine;
 
 public class Chicken : Animal
 {
-    private int egg;
-    public int Egg { get { return egg; } set { egg = value; } }
-    
+    private int Eggs { get; set; }
+
     public override void MakeSound()
     {
-        Debug.Log("Katak Katak !!");
-    }
-    
-    public override void GetStatus()
-    {
-        Debug.Log($"Name : {Name}, Hunger : {Hunger}, Happiness : {Happiness}, Egg : {Egg}");
+        Debug.Log($"{Name} says Katak Katak!");
     }
 
-    public void Sleep()
+    public override string Produce()
     {
-        Debug.Log($"{Name} is Sleeping");
-        AdjustHunger(10);
-        AdjustHappiness(10);
-        GetStatus();
+        if (Happiness < 50) Eggs = 0;
+        else if (Happiness <= 60) Eggs = 2;
+        else Eggs = 3;
+
+        return $"{Name} produced {Eggs} eggs.";
     }
 }
