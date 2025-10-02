@@ -292,7 +292,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4dba384d5ad4185498ae1b724d5261d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -369,11 +369,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Main
   hero: {fileID: 424027061}
   monsterPrefabs:
-  - {fileID: 7330164833874591644, guid: b6d1fc5c6befb964aa6560cbc55bd0de, type: 3}
-  - {fileID: 5721781251023881476, guid: 2b5f9c338dce2194ebbfb552089dcf3a, type: 3}
-  - {fileID: 222956968627887440, guid: 9707c3fa6d7c2ca4f8395b9592411ce1, type: 3}
-  currentMonster: {fileID: 0}
+  - {fileID: 6401177522333626335, guid: b6d1fc5c6befb964aa6560cbc55bd0de, type: 3}
+  - {fileID: 3306287849699256304, guid: 2b5f9c338dce2194ebbfb552089dcf3a, type: 3}
+  - {fileID: 6805521345972464122, guid: 9707c3fa6d7c2ca4f8395b9592411ce1, type: 3}
   monsters: []
+  weaponPrefabs:
+  - {fileID: 6835441856691846085, guid: 6d66e1aca6580b740af72e9dc67ad46d, type: 3}
+  - {fileID: 2248041733211602908, guid: e6962676b87634247838478a0f866602, type: 3}
+  - {fileID: 9212196375864402209, guid: 663f9b9a1e2feab4c83e649a0d10edc2, type: 3}
+  - {fileID: 6482125079574136001, guid: ba42ee5fa41afcb449e60628bc15218a, type: 3}
 --- !u!4 &1169087861
 Transform:
   m_ObjectHideFlags: 0

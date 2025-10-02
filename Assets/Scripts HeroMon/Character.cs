@@ -6,6 +6,7 @@ public abstract class Character : MonoBehaviour
    protected int maxHealth;
    private int health;
    public int AttackPower;
+   public Weapon EquippedWeapon { get; private set; }
    
    public int Health
    {
@@ -18,7 +19,11 @@ public abstract class Character : MonoBehaviour
             health = 0;
       }
    }
-   
+
+   public void EquipWeapon(Weapon weapon)
+   {
+      EquippedWeapon = weapon;
+   }
    public void Init(string characterName,int characterHealth,int characterAttackPower)
    {
       Name = characterName;
@@ -52,11 +57,21 @@ public abstract class Character : MonoBehaviour
 
    public void ShowStat()
    {
-      Debug.Log($"Character {Name} is {IsAlive()},HP : {Health},ATK : {AttackPower}");
+      Debug.Log($"Character {Name} Is Alive : {IsAlive()},HP : {Health},ATK : {AttackPower}");
    }
 
    public abstract void Attack(Character target);
    
    public abstract void Attack(Character target,int bonusDamage);
+
+   public virtual void Attack(Character target, Weapon weapon)
+   {
+      if (weapon != null)
+      {
+         int finalDamage = AttackPower + weapon.BonusDamage;
+         target.TakeDamage(finalDamage);
+         Debug.Log($"{Name} use a {weapon.WeaponName} with bonus damage {weapon.BonusDamage} deal total damage {finalDamage} To {target}");
+      }
+   }
 
 }
